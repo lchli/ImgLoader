@@ -25,12 +25,28 @@ public class FrescoImgLoader implements ImgLoader {
 
     @Override
     public void display(ImageView imageView, ImgSource source, ImgConfig config) {
+
+        if (source == null) {
+            return;
+        }
+
         if (!(imageView instanceof SimpleDraweeView)) {
             return;
         }
-        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) imageView;
 
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) imageView;
         ImageRequestBuilder requestBuilder = ImageRequestBuilder.newBuilderWithSource(source.getImgUri());
+
+        if (config == null) {
+            simpleDraweeView.setController(
+                    Fresco.newDraweeControllerBuilder()
+                            .setOldController(simpleDraweeView.getController())
+                            .setImageRequest(requestBuilder.build())
+                            .build());
+            return;
+        }
+
+
         if (config.getResizeHeight() > 0 && config.getResizeWidth() > 0) {
             requestBuilder.setResizeOptions(new ResizeOptions(config.getResizeWidth(), config.getResizeHeight()));
         }
