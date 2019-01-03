@@ -1,6 +1,7 @@
 package com.lchli.imgloader.fresco;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -24,13 +25,9 @@ public class FrescoImgLoader implements ImgLoader {
     }
 
     @Override
-    public void display(ImageView imageView, ImgSource source, ImgConfig config) {
+    public void display(ImageView imageView, ImgSource source, @Nullable ImgConfig config) {
 
-        if (source == null) {
-            return;
-        }
-
-        if (!(imageView instanceof SimpleDraweeView)) {
+        if (source == null || !(imageView instanceof SimpleDraweeView)) {
             return;
         }
 

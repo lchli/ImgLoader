@@ -1,6 +1,7 @@
 package com.lchli.imgloader;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 /**
@@ -11,5 +12,5 @@ public interface ImgLoader {
 
     void init(Context context,ImgInitConfig config);
 
-    void display(ImageView imageView, ImgSource source, ImgConfig config);
+    void display(ImageView imageView, ImgSource source, @Nullable ImgConfig config);
 }

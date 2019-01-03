@@ -3,14 +3,14 @@ package com.lchli.imgloader;
 import android.content.Context;
 import android.widget.ImageView;
 
-import com.lchli.imgloader.fresco.FrescoImgLoader;
+import com.lchli.imgloader.glide.GlideImgLoader;
 
 /**
  * Created by Administrator on 2018/12/29.
  */
 
 public final class ImgLoaderManager implements ImgLoader {
-    private final ImgLoader imgLoader = new FrescoImgLoader();
+    private final ImgLoader imgLoader = new GlideImgLoader();
 
     private static ImgLoaderManager INS = new ImgLoaderManager();
 
