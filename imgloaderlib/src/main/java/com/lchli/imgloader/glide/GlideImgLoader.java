@@ -36,44 +36,41 @@ public class GlideImgLoader implements ImgLoader {
         RequestBuilder<Drawable> requestBuilder = requestManager.asDrawable();
         RequestOptions requestOptions = new RequestOptions();
         DrawableTransitionOptions transitionOptions = DrawableTransitionOptions.withCrossFade(0);
+        requestBuilder = requestBuilder.transition(transitionOptions);
+
+        if (imgSource.getImgUri() != null) {
+            requestBuilder = requestBuilder.load(imgSource.getImgUri());
+        } else if (imgSource.getImgResId() != null) {
+            requestBuilder = requestBuilder.load(imgSource.getImgResId());
+        } else if (imgSource.getImgFile() != null) {
+            requestBuilder = requestBuilder.load(imgSource.getImgFile());
+        } else if (imgSource.getImgPath() != null) {
+            requestBuilder = requestBuilder.load(imgSource.getImgPath());
+        }
 
         if (config == null) {
-            if (imgSource.getImgUri() != null) {
-                requestBuilder.apply(requestOptions)
-                        .transition(transitionOptions)
-                        .load(imgSource.getImgUri()).into(imageView);
-            } else if (imgSource.getImgResId() != null) {
-                requestBuilder.apply(requestOptions)
-                        .transition(transitionOptions)
-                        .load(imgSource.getImgResId()).into(imageView);
-            }
+            requestBuilder.apply(requestOptions)
+                    .into(imageView);
             return;
         }
 
         if (config.getResizeHeight() > 0 && config.getResizeWidth() > 0) {
-            requestOptions.override(config.getResizeWidth(), config.getResizeHeight());
+            requestOptions = requestOptions.override(config.getResizeWidth(), config.getResizeHeight());
         }
 
         if (config.getPlaceHolderDrawable() != null) {
-            requestOptions.placeholder(config.getPlaceHolderDrawable());
+            requestOptions = requestOptions.placeholder(config.getPlaceHolderDrawable());
         } else if (config.getPlaceHolderResId() != null) {
-            requestOptions.placeholder(config.getPlaceHolderResId());
+            requestOptions = requestOptions.placeholder(config.getPlaceHolderResId());
         }
 
         if (!config.isGif()) {
             if (config.isCircleImage()) {
-                requestOptions.transform(new CircleTransformation(config.getBorderWidth(), config.getBorderColor()));
+                requestOptions = requestOptions.transform(new CircleTransformation(config.getBorderWidth(), config.getBorderColor()));
             }
         }
 
-        if (imgSource.getImgUri() != null) {
-            requestBuilder.apply(requestOptions)
-                    .transition(transitionOptions)
-                    .load(imgSource.getImgUri()).into(imageView);
-        } else if (imgSource.getImgResId() != null) {
-            requestBuilder.apply(requestOptions)
-                    .transition(transitionOptions)
-                    .load(imgSource.getImgResId()).into(imageView);
-        }
+        requestBuilder.apply(requestOptions)
+                .into(imageView);
     }
 }

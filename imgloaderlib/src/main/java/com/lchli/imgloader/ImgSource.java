@@ -2,6 +2,8 @@ package com.lchli.imgloader;
 
 import android.net.Uri;
 
+import java.io.File;
+
 /**
  * Created by Administrator on 2018/12/29.
  */
@@ -9,6 +11,8 @@ import android.net.Uri;
 public class ImgSource {
     private Uri imgUri;
     private Integer imgResId;
+    private File imgFile;
+    private String imgPath;
 
 
     public static ImgSource create() {
@@ -26,6 +30,16 @@ public class ImgSource {
         return this;
     }
 
+    public ImgSource setImgFile(File imgFile) {
+        this.imgFile = imgFile;
+        return this;
+    }
+
+    public ImgSource setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+        return this;
+    }
+
     public Integer getImgResId() {
         return imgResId;
     }
@@ -33,5 +47,13 @@ public class ImgSource {
 
     public Uri getImgUri() {
         return imgUri;
+    }
+
+    public File getImgFile() {
+        return imgFile;
+    }
+
+    public String getImgPath() {
+        return imgPath;
     }
 }
