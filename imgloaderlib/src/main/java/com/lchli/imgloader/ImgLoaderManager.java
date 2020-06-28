@@ -3,14 +3,12 @@ package com.lchli.imgloader;
 import android.content.Context;
 import android.widget.ImageView;
 
-import com.lchli.imgloader.fresco.FrescoImgLoader;
+import androidx.annotation.NonNull;
 
-/**
- * Created by Administrator on 2018/12/29.
- */
+import com.lchli.imgloader.glide.GlideImgLoader;
 
 public final class ImgLoaderManager implements ImgLoader {
-    private final ImgLoader imgLoader = new FrescoImgLoader();
+    private final ImgLoader imgLoader = new GlideImgLoader();
 
     private static ImgLoaderManager INS = new ImgLoaderManager();
 
@@ -24,7 +22,12 @@ public final class ImgLoaderManager implements ImgLoader {
     }
 
     @Override
-    public void display(ImageView imageView, ImgSource source, ImgConfig config) {
+    public void display(ImageView imageView, Object source, ImgConfig config) {
         imgLoader.display(imageView, source, config);
+    }
+
+    @Override
+    public void display(@NonNull ImageView imageView, @NonNull Object source) {
+        display(imageView,source,null);
     }
 }
