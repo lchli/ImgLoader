@@ -5,6 +5,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
+
 import com.lchli.imgloader.glide.GlideImgLoader;
 
 public final class ImgLoaderManager implements ImgLoader {
@@ -28,6 +29,6 @@ public final class ImgLoaderManager implements ImgLoader {
 
     @Override
     public void display(@NonNull ImageView imageView, @NonNull Object source) {
-        display(imageView,source,null);
+        display(imageView, source, null);
     }
 }

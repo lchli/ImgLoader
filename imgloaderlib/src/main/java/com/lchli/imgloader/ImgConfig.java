@@ -8,7 +8,7 @@ public class ImgConfig {
     private Integer placeHolderResId;
     private Drawable placeHolderDrawable;
     private Float roundCornerRadius;
-    private boolean circleImage=false;
+    private boolean circleImage = false;
 
     public static ImgConfig create() {
         return new ImgConfig();
@@ -64,7 +64,9 @@ public class ImgConfig {
         return this;
     }
 
+
     public boolean isCircleImage() {
         return circleImage;
+
     }
 }

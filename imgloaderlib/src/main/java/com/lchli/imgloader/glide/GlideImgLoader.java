@@ -18,7 +18,6 @@ import com.lchli.imgloader.ImgConfig;
 import com.lchli.imgloader.ImgInitConfig;
 import com.lchli.imgloader.ImgLoader;
 
-
 public class GlideImgLoader implements ImgLoader {
 
     @Override
@@ -101,5 +100,6 @@ public class GlideImgLoader implements ImgLoader {
         }
 
         return true;
+
     }
 }
