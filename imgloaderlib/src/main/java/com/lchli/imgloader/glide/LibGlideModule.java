@@ -11,11 +11,16 @@ import com.bumptech.glide.module.LibraryGlideModule;
 
 import java.io.InputStream;
 
+import okhttp3.OkHttpClient;
+
 @GlideModule
 public final class LibGlideModule extends LibraryGlideModule {
     @Override
     public void registerComponents(Context context, Glide glide, Registry registry) {
-        registry.replace(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory());
+
+        OkHttpClient client = UnsafeOkHttpClient.getUnsafeOkHttpClient();
+        registry.replace(GlideUrl.class, InputStream.class,
+                new OkHttpUrlLoader.Factory(client));
     }
 
 
