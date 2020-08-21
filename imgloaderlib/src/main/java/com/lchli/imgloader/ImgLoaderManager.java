@@ -1,9 +1,9 @@
 package com.lchli.imgloader;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 
 
 import com.lchli.imgloader.glide.GlideImgLoader;
